@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sivasankar N - Senior Quality Analyst</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,685 +13,1127 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #e2e8f0;
+            background: #0f172a;
             overflow-x: hidden;
+        }
+
+        /* Tech Grid Background */
+        .tech-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Accent Lines */
+        .accent-line {
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4, #3b82f6);
+            background-size: 200% 100%;
+            animation: lineFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes lineFlow {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 0%; }
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
-        /* Header Section */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem 0;
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
             text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            border: 2px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3b82f6;
             position: relative;
             overflow: hidden;
         }
-        
-        .header::before {
+
+        .hero-avatar::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shine 3s infinite;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            animation: avatarShine 2s infinite;
         }
-        
-        @keyframes shine {
+
+        @keyframes avatarShine {
             0% { left: -100%; }
             100% { left: 100%; }
         }
-        
-        .profile-img {
-            width: 150px;
-            height: 150px;
+
+        .status-indicator {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #10b981;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 3rem;
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: pulse 2s infinite;
+            border: 3px solid #0f172a;
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .header h2 {
-            font-size: 1.2rem;
-            color: #7f8c8d;
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            background: linear-gradient(135deg, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
         }
         
-        .contact-info {
-            display: flex;
-            justify-content: center;
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.4s both;
+            margin: 3rem 0;
         }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #555;
-            text-decoration: none;
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
             transition: all 0.3s ease;
         }
-        
-        .contact-item:hover {
-            color: #667eea;
+
+        .stat-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+
+        .btn-outline:hover {
+            background: #3b82f6;
+            color: white;
             transform: translateY(-2px);
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Main Content */
-        .main-content {
-            background: white;
-            margin: 2rem 0;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            overflow: hidden;
-            animation: slideInUp 1s ease-out 0.6s both;
-        }
-        
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
+        /* Section Styles */
         .section {
-            padding: 3rem 2rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .section:last-child {
-            border-bottom: none;
-        }
-        
-        .section h3 {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
+            padding: 4rem 0;
             position: relative;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
-        
-        .section h3::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, #667eea, transparent);
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
-        
-        /* Professional Summary */
-        .summary {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
         }
-        
-        .summary p {
+
+        .section-subtitle {
             font-size: 1.1rem;
-            color: #495057;
-            line-height: 1.8;
-            text-align: justify;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        
-        .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        
+
         /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
+            gap: 2rem;
         }
-        
+
         .skill-category {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.3s ease;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+        }
+
         .skill-category:hover {
+            border-color: #3b82f6;
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
         }
-        
-        .skill-category h4 {
-            color: #2c3e50;
-            margin-bottom: 0.8rem;
+
+        .skill-header {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
-        
-        .skill-tags {
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .skill-category h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .skills-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
-        
+
         .skill-tag {
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.8rem;
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
             transition: all 0.3s ease;
         }
-        
+
         .skill-tag:hover {
-            background: #5a6fd8;
-            transform: scale(1.05);
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            transform: translateY(-1px);
         }
-        
+
         /* Experience Timeline */
         .timeline {
             position: relative;
-            margin: 2rem 0;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        
+
         .timeline::before {
             content: '';
             position: absolute;
-            left: 20px;
+            left: 2rem;
             top: 0;
             bottom: 0;
             width: 2px;
-            background: #667eea;
+            background: linear-gradient(180deg, #3b82f6, #06b6d4);
         }
-        
+
         .timeline-item {
             position: relative;
-            margin-bottom: 2rem;
-            padding-left: 60px;
+            margin-bottom: 3rem;
+            padding-left: 5rem;
         }
-        
-        .timeline-item::before {
-            content: '';
+
+        .timeline-dot {
             position: absolute;
-            left: 12px;
-            top: 8px;
-            width: 16px;
-            height: 16px;
-            background: #667eea;
+            left: 1.25rem;
+            top: 1.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #3b82f6;
             border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px #667eea;
+            border: 4px solid #0f172a;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
-        
+
         .experience-card {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
             transition: all 0.3s ease;
         }
-        
+
         .experience-card:hover {
+            border-color: #3b82f6;
             transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
         }
-        
-        .experience-header {
-            margin-bottom: 1rem;
+
+        .job-header {
+            margin-bottom: 1.5rem;
         }
-        
+
         .job-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #2c3e50;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
         }
-        
+
         .company {
-            color: #667eea;
-            font-weight: 500;
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
         }
-        
+
         .duration {
-            color: #7f8c8d;
+            color: #94a3b8;
             font-size: 0.9rem;
         }
-        
+
         .achievements {
             list-style: none;
-            margin-top: 1rem;
         }
-        
+
         .achievements li {
             position: relative;
             padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #495057;
+            margin-bottom: 0.75rem;
+            color: #cbd5e1;
+            line-height: 1.6;
         }
-        
+
         .achievements li::before {
-            content: '🎯';
+            content: '▶';
             position: absolute;
             left: 0;
+            color: #3b82f6;
         }
-        
+
         /* Projects Grid */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
         }
-        
+
         .project-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
             padding: 2rem;
-            border-radius: 15px;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease;
         }
-        
+
         .project-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981);
         }
-        
+
         .project-card:hover {
-            transform: translateY(-10px);
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.2);
         }
-        
-        .project-card:hover::before {
-            opacity: 1;
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
         }
-        
+
         .project-title {
             font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
         }
-        
-        .project-details {
+
+        .project-type {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-meta {
+            color: #94a3b8;
             font-size: 0.9rem;
             margin-bottom: 1rem;
-            opacity: 0.9;
         }
-        
+
+        .project-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
         .project-impact {
-            background: rgba(255,255,255,0.2);
-            padding: 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
             border-radius: 8px;
-            margin-top: 1rem;
+            padding: 1rem;
+            color: #34d399;
+            font-weight: 600;
         }
-        
+
         /* Achievements */
         .achievements-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
-        
+
         .achievement-card {
-            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
-            padding: 1.5rem;
-            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
-        
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #f59e0b, #eab308);
+        }
+
         .achievement-card:hover {
-            transform: scale(1.05);
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
         }
-        
+
         .achievement-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
+            display: block;
         }
-        
+
         .achievement-title {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.75rem;
         }
-        
+
         .achievement-desc {
-            color: #555;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-text {
+            color: #cbd5e1;
             font-size: 0.9rem;
         }
-        
+
         /* Footer */
         .footer {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.8);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 3rem 0 2rem;
             text-align: center;
-            padding: 2rem;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .footer p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info {
             margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            color: #64748b;
+            font-size: 0.9rem;
         }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        
+
         /* Responsive Design */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .nav-links {
+                display: none;
             }
-            
-            .contact-info {
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-buttons {
                 flex-direction: column;
-                gap: 1rem;
+                align-items: center;
             }
-            
+
             .skills-grid,
-            .projects-grid {
+            .projects-grid,
+            .achievements-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .section {
-                padding: 2rem 1rem;
+
+            .timeline::before {
+                left: 1rem;
             }
+
+            .timeline-item {
+                padding-left: 3rem;
+            }
+
+            .timeline-dot {
+                left: 0.25rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Smooth animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
+    <!-- Tech Grid Background -->
+    <div class="tech-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">SN</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <div class="profile-img">SN</div>
-            <h1>Sivasankar N</h1>
-            <h2>Senior Quality Analyst | Test Automation Expert</h2>
-            <div class="contact-info">
-                <a href="mailto:sivasankar91.n@gmail.com" class="contact-item">
-                    📧 sivasankar91.n@gmail.com
-                </a>
-                <a href="tel:+919489483211" class="contact-item">
-                    📱 +91 9489483211
-                </a>
-                <span class="contact-item">
-                    📍 Chennai, India
-                </span>
+            <div class="hero-content">
+                <div class="hero-avatar">
+                    SN
+                    <div class="status-indicator"></div>
+                </div>
+                <h1>Sivasankar N</h1>
+                <div class="subtitle">Senior Quality Analyst & Test Automation Expert</div>
+                <p class="description">
+                    Transforming software quality through innovative automation strategies. 
+                    4+ years of specialized expertise delivering 60% efficiency gains and 95%+ test coverage 
+                    across Finance, E-commerce, and Aviation domains.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">4+</span>
+                        <div class="stat-label">Years QA Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">60%</span>
+                        <div class="stat-label">Efficiency Improvement</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">95%</span>
+                        <div class="stat-label">Test Coverage</div>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
+                    <a href="#projects" class="btn btn-outline">
+                        <i class="fas fa-eye"></i>
+                        View Projects
+                    </a>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Main Content -->
-    <main class="main-content">
+    <div class="accent-line"></div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
         <div class="container">
-            <!-- Professional Summary -->
-            <section class="section summary">
-                <h3>🎯 Professional Summary</h3>
-                <p>
-                    <span class="highlight">Dynamic Senior Quality Analyst</span> with 4+ years of specialized expertise in software testing and automation, backed by 8+ years of comprehensive professional experience. 
-                    <span class="highlight">Automation champion</span> who has successfully reduced manual testing effort by 60% and achieved 95%+ test coverage across Finance, E-commerce, and Aviation domains. 
-                    Expert in building robust, scalable test automation frameworks using Selenium WebDriver and Java. 
-                    <span class="highlight">Proven leader</span> in driving quality-first development practices with deep experience in Agile methodologies and CI/CD integration.
+            <div class="section-header">
+                <h2 class="section-title">Core Competencies</h2>
+                <p class="section-subtitle">
+                    Comprehensive expertise across the entire testing lifecycle with focus on automation excellence
                 </p>
-            </section>
-
-            <!-- Core Competencies -->
-            <section class="section">
-                <h3>🚀 Core Competencies</h3>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>🔧 Test Automation & Frameworks</h4>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Selenium WebDriver</span>
-                            <span class="skill-tag">TestNG</span>
-                            <span class="skill-tag">Cucumber BDD</span>
-                            <span class="skill-tag">Page Object Model</span>
-                            <span class="skill-tag">Hybrid Frameworks</span>
-                            <span class="skill-tag">Data-Driven Testing</span>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
                         </div>
+                        <h3>Test Automation & Frameworks</h3>
                     </div>
-                    <div class="skill-category">
-                        <h4>💻 Programming & Development</h4>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Java (Core & OOPs)</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">Maven</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h4>🔗 API & Database Testing</h4>
-                        <div class="skill-tags">
-                            <span class="skill-tag">REST Assured</span>
-                            <span class="skill-tag">Postman</span>
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">API Validation</span>
-                            <span class="skill-tag">Backend Testing</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h4>⚙️ CI/CD & DevOps</h4>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Azure DevOps</span>
-                            <span class="skill-tag">Test Artifact Management</span>
-                            <span class="skill-tag">Continuous Integration</span>
-                            <span class="skill-tag">Automated Deployment</span>
-                        </div>
+                    <div class="skills-list">
+                        <span class="skill-tag">Selenium WebDriver</span>
+                        <span class="skill-tag">TestNG</span>
+                        <span class="skill-tag">Cucumber BDD</span>
+                        <span class="skill-tag">Page Object Model</span>
+                        <span class="skill-tag">Hybrid Frameworks</span>
+                        <span class="skill-tag">Data-Driven Testing</span>
                     </div>
                 </div>
-            </section>
 
-            <!-- Professional Experience -->
-            <section class="section">
-                <h3>💼 Professional Experience</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="experience-card">
-                            <div class="experience-header">
-                                <div class="job-title">🏆 Senior Quality Analyst</div>
-                                <div class="company">Simptra Technologies Pvt. Ltd.</div>
-                                <div class="duration">Feb 2024 – Present | Chennai, India</div>
-                            </div>
-                            <ul class="achievements">
-                                <li>Spearheaded automation initiatives across 6 critical modules achieving <strong>60% reduction</strong> in manual testing effort</li>
-                                <li>Architected hybrid test automation frameworks resulting in <strong>40% faster</strong> test execution cycles</li>
-                                <li>Delivered compelling automation demos to C-level executives, securing ₹50L+ automation initiatives</li>
-                                <li>Orchestrated seamless DevOps integration reducing deployment cycle time by <strong>30%</strong></li>
-                                <li>Innovated custom utilities boosting debugging efficiency by <strong>50%</strong></li>
-                            </ul>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
                         </div>
+                        <h3>Programming & Development</h3>
                     </div>
-                    
-                    <div class="timeline-item">
-                        <div class="experience-card">
-                            <div class="experience-header">
-                                <div class="job-title">💻 Software Test Engineer</div>
-                                <div class="company">Mount Point Technology Pvt. Ltd.</div>
-                                <div class="duration">Oct 2020 – Feb 2024 | Chennai, India</div>
-                            </div>
-                            <ul class="achievements">
-                                <li>Built comprehensive automation suite for e-commerce platform</li>
-                                <li>Actively participated in Agile ceremonies and sprint planning</li>
-                                <li>Executed rigorous testing ensuring <strong>99% bug-free</strong> releases</li>
-                                <li>Collaborated with development teams to establish quality gates</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="experience-card">
-                            <div class="experience-header">
-                                <div class="job-title">✈️ Software Test Engineer</div>
-                                <div class="company">SpiceJet Airlines</div>
-                                <div class="duration">May 2019 – Sep 2020 | Chennai, India</div>
-                            </div>
-                            <ul class="achievements">
-                                <li>Validated critical flight reservation systems handling 10,000+ daily transactions</li>
-                                <li>Managed complete defect lifecycle achieving <strong>95% defect closure rate</strong></li>
-                                <li>Ensured system reliability during peak booking periods</li>
-                            </ul>
-                        </div>
+                    <div class="skills-list">
+                        <span class="skill-tag">Java (Core & OOPs)</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Maven</span>
                     </div>
                 </div>
-            </section>
 
-            <!-- Signature Projects -->
-            <section class="section">
-                <h3>🎯 Signature Projects</h3>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-title">💰 Client360 Automation Framework</div>
-                        <div class="project-details">
-                            <strong>Domain:</strong> Finance/CRM | <strong>Duration:</strong> 8 months | <strong>Team:</strong> 5 members
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-plug"></i>
                         </div>
-                        <p>Automated complete client onboarding process and audit log validation for multiple financial clients. Developed multi-client test configuration utilities supporting 10+ environments.</p>
-                        <div class="project-impact">
-                            <strong>Impact:</strong> 70% reduction in manual testing time, 99% accuracy in client data validation
-                        </div>
+                        <h3>API & Database Testing</h3>
                     </div>
-                    
-                    <div class="project-card">
-                        <div class="project-title">🛒 OK Furniture E-Commerce Testing</div>
-                        <div class="project-details">
-                            <strong>Domain:</strong> E-commerce | <strong>Duration:</strong> 12 months | <strong>Team:</strong> 4 members
-                        </div>
-                        <p>Built end-to-end automation suite covering shopping cart, payment, and order management workflows. Implemented robust API testing framework for backend validation.</p>
-                        <div class="project-impact">
-                            <strong>Impact:</strong> 50% faster regression cycles, improved customer experience
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <div class="project-title">✈️ SpiceJet Reservation System</div>
-                        <div class="project-details">
-                            <strong>Domain:</strong> Aviation | <strong>Duration:</strong> 16 months | <strong>Team:</strong> 6 members
-                        </div>
-                        <p>Tested mission-critical booking and payment systems handling 10,000+ daily transactions. Ensured system stability during high-traffic periods and promotional campaigns.</p>
-                        <div class="project-impact">
-                            <strong>Impact:</strong> Zero critical production defects, 99.9% system uptime
-                        </div>
+                    <div class="skills-list">
+                        <span class="skill-tag">REST Assured</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">API Validation</span>
+                        <span class="skill-tag">Backend Testing</span>
                     </div>
                 </div>
-            </section>
 
-            <!-- Key Achievements -->
-            <section class="section">
-                <h3>🏆 Key Achievements</h3>
-                <div class="achievements-grid">
-                    <div class="achievement-card">
-                        <div class="achievement-icon">🥇</div>
-                        <div class="achievement-title">Employee of the Month (2x)</div>
-                        <div class="achievement-desc">Recognized for exceptional performance in automation framework development and outstanding leadership</div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>CI/CD & DevOps</h3>
                     </div>
-                    
-                    <div class="achievement-card">
-                        <div class="achievement-icon">🚀</div>
-                        <div class="achievement-title">Process Improvement Initiative</div>
-                        <div class="achievement-desc">Led cross-team collaboration resulting in 30% faster release cycles</div>
-                    </div>
-                    
-                    <div class="achievement-card">
-                        <div class="achievement-icon">💡</div>
-                        <div class="achievement-title">Innovation Leader</div>
-                        <div class="achievement-desc">Developed proprietary testing utilities saving 200+ hours monthly</div>
-                    </div>
-                    
-                    <div class="achievement-card">
-                        <div class="achievement-icon">👨‍🏫</div>
-                        <div class="achievement-title">Technical Mentor</div>
-                        <div class="achievement-desc">Trained 8+ junior QA engineers in automation best practices</div>
+                    <div class="skills-list">
+                        <span class="skill-tag">Azure DevOps</span>
+                        <span class="skill-tag">Test Artifact Management</span>
+                        <span class="skill-tag">Continuous Integration</span>
+                        <span class="skill-tag">Automated Deployment</span>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Experience</h2>
+                <p class="section-subtitle">
+                    Progressive career growth with consistent delivery of high-impact automation solutions
+                </p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="experience-card">
+                        <div class="job-header">
+                            <div class="job-title">Senior Quality Analyst</div>
+                            <div class="company">Simptra Technologies Pvt. Ltd.</div>
+                            <div class="duration">Feb 2024 – Present | Chennai, India</div>
+                        </div>
+                        <ul class="achievements">
+                            <li>Spearheaded automation initiatives across 6 critical modules achieving <strong>60% reduction</strong> in manual testing effort</li>
+                            <li>Architected hybrid test automation frameworks resulting in <strong>40% faster</strong> test execution cycles</li>
+                            <li>Delivered compelling automation demos to C-level executives, securing ₹50L+ automation initiatives</li>
+                            <li>Orchestrated seamless DevOps integration reducing deployment cycle time by <strong>30%</strong></li>
+                            <li>Innovated custom utilities boosting debugging efficiency by <strong>50%</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="experience-card">
+                        <div class="job-header">
+                            <div class="job-title">Software Test Engineer</div>
+                            <div class="company">Mount Point Technology Pvt. Ltd.</div>
+                            <div class="duration">Oct 2020 – Feb 2024 | Chennai, India</div>
+                        </div>
+                        <ul class="achievements">
+                            <li>Built comprehensive automation suite for e-commerce platform covering UI and API workflows</li>
+                            <li>Actively participated in Agile ceremonies and sprint planning sessions</li>
+                            <li>Executed rigorous testing protocols ensuring <strong>99% bug-free</strong> releases to production</li>
+                            <li>Collaborated with development teams to establish quality gates and testing standards</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="experience-card">
+                        <div class="job-header">
+                            <div class="job-title">Software Test Engineer</div>
+                            <div class="company">SpiceJet Airlines</div>
+                            <div class="duration">May 2019 – Sep 2020 | Chennai, India</div>
+                        </div>
+                        <ul class="achievements">
+                            <li>Validated critical flight reservation systems handling <strong>10,000+ daily transactions</strong></li>
+                            <li>Managed complete defect lifecycle achieving <strong>95% defect closure rate</strong> within sprint cycles</li>
+                            <li>Ensured system reliability during peak booking periods and promotional campaigns</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Signature Projects</h2>
+                <p class="section-subtitle">
+                    Breakthrough automation solutions delivering measurable business impact
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">Client360 Automation Framework</div>
+                            <div class="project-meta">Finance/CRM • 8 months • 5 team members</div>
+                        </div>
+                        <div class="project-type">Automation</div>
+                    </div>
+                    <div class="project-description">
+                        Automated complete client onboarding process and audit log validation for multiple financial clients. 
+                        Developed multi-client test configuration utilities supporting 10+ environments simultaneously.
+                    </div>
+                    <div class="project-impact">
+                        <i class="fas fa-chart-line"></i> 
+                        <strong>Impact:</strong> 70% reduction in manual testing time, 99% accuracy in data validation
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">OK Furniture E-Commerce Testing</div>
+                            <div class="project-meta">E-commerce • 12 months • 4 team members</div>
+                        </div>
+                        <div class="project-type">Full-Stack</div>
+                    </div>
+                    <div class="project-description">
+                        Built end-to-end automation suite covering shopping cart, payment, and order management workflows. 
+                        Implemented robust API testing framework for backend service validation.
+                    </div>
+                    <div class="project-impact">
+                        <i class="fas fa-rocket"></i> 
+                        <strong>Impact:</strong> 50% faster regression cycles, enhanced customer experience
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">SpiceJet Reservation System</div>
+                            <div class="project-meta">Aviation • 16 months • 6 team members</div>
+                        </div>
+                        <div class="project-type">Enterprise</div>
+                    </div>
+                    <div class="project-description">
+                        Tested mission-critical booking and payment systems handling 10,000+ daily transactions. 
+                        Ensured system stability during high-traffic periods and promotional campaigns.
+                    </div>
+                    <div class="project-impact">
+                        <i class="fas fa-shield-alt"></i> 
+                        <strong>Impact:</strong> Zero critical production defects, 99.9% system uptime
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- Achievements Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Key Achievements</h2>
+                <p class="section-subtitle">
+                    Recognition for excellence in automation innovation and team leadership
+                </p>
+            </div>
+
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <div class="achievement-title">Employee of the Month (2x)</div>
+                    <div class="achievement-desc">
+                        Recognized for exceptional performance in automation framework development and outstanding leadership
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">🚀</div>
+                    <div class="achievement-title">Process Improvement Initiative</div>
+                    <div class="achievement-desc">
+                        Led cross-team collaboration resulting in 30% faster release cycles and improved quality metrics
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">💡</div>
+                    <div class="achievement-title">Innovation Leader</div>
+                    <div class="achievement-desc">
+                        Developed proprietary testing utilities adopted company-wide, saving 200+ hours monthly
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">👨‍🏫</div>
+                    <div class="achievement-title">Technical Mentor</div>
+                    <div class="achievement-desc">
+                        Trained 8+ junior QA engineers in automation best practices and framework development
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="accent-line"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">
+                    Ready to drive quality excellence in your organization? Let's discuss how I can contribute to your team's success.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <a href="mailto:sivasankar91.n@gmail.com" class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">sivasankar91.n@gmail.com</div>
+                </a>
+
+                <a href="tel:+919489483211" class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">+91 9489483211</div>
+                </a>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">Chennai, India</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; text-align: center;">
+                <a href="mailto:sivasankar91.n@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    Start Conversation
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <h3>Let's Connect</h3>
-            <p>Ready to bring quality excellence to your team? Let's discuss how I can contribute to your organization's success.</p>
-            <br>
-            <a href="mailto:sivasankar91.n@gmail.com" class="cta-button">Get In Touch</a>
-            <br><br>
-            <p><strong>Notice Period:</strong> 90 days | <strong>Location:</strong> Chennai, India </p>
+            <div class="footer-content">
+                <h3>Sivasankar N</h3>
+                <p>Senior Quality Analyst committed to delivering exceptional software quality through innovative automation strategies.</p>
+                <div class="footer-info">
+                    <strong>Notice Period:</strong> 90 days | <strong>Location:</strong> Chennai, India
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for internal links
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
-        // Add scroll animation trigger
+        // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -699,28 +1142,47 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        // Observe all sections for scroll animations
+        // Observe all sections for animations
         document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            section.classList.add('fade-in');
             observer.observe(section);
         });
 
-        // Add hover effects to skill tags
-        document.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1)';
+        // Add active nav link highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.skill-category, .experience-card, .project-card, .achievement-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = this.style.transform.replace('translateY(-5px)', 'translateY(-8px)');
             });
             
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = this.style.transform.replace('translateY(-8px)', 'translateY(-5px)');
             });
         });
     </script>
